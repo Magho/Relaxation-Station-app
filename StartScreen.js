@@ -20,8 +20,8 @@ class StartScreen extends React.Component {
             <View style={styles.container}>
               <TouchableOpacity style= {styles.button} onPress= {() => this.props.navigation.navigate('Home')}>
                 <Image source={zenImage} style={styles.buttonImage}/>
+                <Text style={styles.reayText}>I'm ready to relax...</Text>
               </TouchableOpacity>
-              <Text style={styles.reayText}>I'm ready to relax...</Text>
             </View>
     );
   }
@@ -30,7 +30,7 @@ class StartScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#161737',
+    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -40,14 +40,10 @@ const styles = StyleSheet.create({
     color      : '#ffffff',
   },
   button : {
-    backgroundColor : '#859a9b',
+    backgroundColor : '#000',
     borderRadius    : 20,
     padding         : 10,
     marginBottom    : 20,
-    shadowColor     : '#303838',
-    shadowOffset    : {width : 0 , height : 5},
-    shadowRadius     : 10,
-    shadowOpacity   : 0.35,
   },
   buttonImage : {
     width  : 200,
