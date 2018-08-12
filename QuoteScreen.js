@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   ImageBackground,
+  LayoutAnimation,
   } from 'react-native';
 
 
@@ -14,6 +15,25 @@ import NextQuoteButton from './NextQuoteButton';
 
 const {quotes} = require('./quotes.json');
 const Image2   = require('./assets/image2.jpeg');
+const tranquil = {
+  duration : 500,
+  create : {
+    duration : 1000,
+    delay : 300,
+    type : LayoutAnimation.Types.easeIn,
+    property : LayoutAnimation.Properties.opacity,
+  },
+  update : {
+    type : LayoutAnimation.Types.easeOut,
+    property : LayoutAnimation.Properties.opacity,
+  },
+  delete : {
+    duration : 200,
+    type : LayoutAnimation.Types.easeOut,
+    property : LayoutAnimation.Properties.opacity,
+  },
+}
+
 
 class QuoteScreen extends React.Component {
 
@@ -23,6 +43,10 @@ class QuoteScreen extends React.Component {
       quoteIndex : 3,
     }
     this.IncrementQuoteIndex = this.IncrementQuoteIndex.bind(this);
+  }
+
+  componentWillUpdate () {
+    LayoutAnimation.configureNext(tranquil);
   }
 
   IncrementQuoteIndex () {
@@ -42,7 +66,11 @@ class QuoteScreen extends React.Component {
     return (
             <ImageBackground source={Image2} style={{width: '100%', height: '100%'}} >
               <View style={styles.container}>
-                <Quote quoteText = {quotes[this.state.quoteIndex].text} quoteSource={quotes[this.state.quoteIndex].source}/>
+                <Quote 
+                  key={this.state.quoteIndex}
+                  quoteText = {quotes[this.state.quoteIndex].text}
+                  quoteSource={quotes[this.state.quoteIndex].source}
+                />
                 <NextQuoteButton IncrementQuoteIndex = {this.IncrementQuoteIndex}/>
               </View>
             </ImageBackground>
