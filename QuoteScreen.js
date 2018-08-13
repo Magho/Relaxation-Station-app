@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   LayoutAnimation,
+  NativeModules,
   } from 'react-native';
 
 
@@ -15,6 +16,11 @@ import NextQuoteButton from './NextQuoteButton';
 
 const {quotes} = require('./quotes.json');
 const Image2   = require('./assets/image2.jpeg');
+
+const { UIManager } = NativeModules;
+UIManager.setLayoutAnimationEnabledExperimental &&
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+
 const tranquil = {
   duration : 500,
   create : {
@@ -46,8 +52,8 @@ class QuoteScreen extends React.Component {
   }
 
   componentWillUpdate () {
-    LayoutAnimation.configureNext(tranquil);
-  }
+      LayoutAnimation.configureNext(tranquil);
+    }
 
   IncrementQuoteIndex () {
     let newIndex;
